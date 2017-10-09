@@ -1,9 +1,11 @@
 {
   "name": "result-class",
-  "version": "1.0.0",
   "repository": "https://github.com/Vincent-Pang/result-class.git",
-  "author": "Vincent Pang <augostino@gmail.com>",
   "license": "MIT",
+  "scripts": {
+    "build": "tsc",
+    "test": "jest"
+  },
   "jest": {
     "transform": {
       "^.+\\.tsx?$": "<rootDir>/node_modules/ts-jest/preprocessor.js"
