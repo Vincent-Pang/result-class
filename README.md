@@ -10,7 +10,55 @@ yarn add result-class
 
 ## Usage
 
-TODO: Write usage instructions
+```
+function getUserName(userId: number): Option<string>
+{
+    if (1 === userId)
+    {
+        return new Some('Vincent');
+    }
+    else
+    {
+        return None.getInstance();
+    }
+}
+
+const userName1 = getUserName(1);
+console.log( userName1.unwrap_or('Cannot found') );  // Vincent
+
+const userName100 = getUserName(100);
+console.log( userName100.unwrap_or('Cannot found') );  // Cannot found
+```
+
+```
+function getPid(processName: string): Result<number, string>
+{
+    if ('zsh' === processName)
+    {
+        return new Ok(123);
+    }
+    else
+    {
+        return new Err('Process not found');
+    }
+}
+
+const pidZsh = getPid('zsh')
+                    .map(pid => 'Pid = ' + pid)
+                    .unwrap_or('Pid Not Found');
+
+console.log(pidZsh);    // Pid = 123
+
+const pidBash = getPid('bash')
+                    .map(pid => 'Pid = ' + pid)
+                    .unwrap_or('Pid Not Found');
+
+console.log(pidBash);   // 'Pid Not Found'
+```
+
+More usage can be found in rust document  
+https://doc.rust-lang.org/std/result/enum.Result.html  
+https://doc.rust-lang.org/std/option/enum.Option.html
 
 ## Contributing
 
