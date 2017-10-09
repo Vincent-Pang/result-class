@@ -13,14 +13,7 @@ yarn add result-class
 ```
 function getUserName(userId: number): Option<string>
 {
-    if (1 === userId)
-    {
-        return new Some('Vincent');
-    }
-    else
-    {
-        return None.getInstance();
-    }
+    return 1 === userId ? new Some('Vincent') : None.getInstance();
 }
 
 const userName1 = getUserName(1);
@@ -33,14 +26,7 @@ console.log( userName100.unwrap_or('Cannot found') );  // Cannot found
 ```
 function getPid(processName: string): Result<number, string>
 {
-    if ('zsh' === processName)
-    {
-        return new Ok(123);
-    }
-    else
-    {
-        return new Err('Process not found');
-    }
+    return 'zsh' === processName ? new Ok(123) : new Err('Process not found');
 }
 
 const pidZsh = getPid('zsh')
