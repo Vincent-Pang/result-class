@@ -1,11 +1,15 @@
 {
   "name": "result-class",
   "repository": "https://github.com/Vincent-Pang/result-class.git",
+  "version": "1.1.0",
   "license": "MIT",
   "scripts": {
     "build": "tsc",
-    "test": "jest"
+    "test": "jest",
+    "prepublishOnly": "tsc -p ./ --outDir dist/"
   },
+  "main": "./dist/src/index.js",
+  "types": "./dist/src/index.d.ts",
   "jest": {
     "transform": {
       "^.+\\.tsx?$": "<rootDir>/node_modules/ts-jest/preprocessor.js"
@@ -30,6 +34,5 @@
     "ts-jest": "^21.1.0",
     "tslint": "^5.7.0",
     "typescript": "^2.5.3"
-  },
-  "version": "1.0.0"
+  }
 }
