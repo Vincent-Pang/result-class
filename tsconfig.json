@@ -10,7 +10,8 @@
         "noImplicitAny": true,
         "strictNullChecks": true,
         "noImplicitReturns": true,
-        "noImplicitThis": true
+        "noImplicitThis": true,
+        "declaration": true
     },
     "include": [
         "src/**/*.ts",
