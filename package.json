@@ -1,0 +1,31 @@
+{
+  "name": "result-class",
+  "version": "1.0.0",
+  "repository": "https://github.com/Vincent-Pang/result-class.git",
+  "author": "Vincent Pang <augostino@gmail.com>",
+  "license": "MIT",
+  "jest": {
+    "transform": {
+      "^.+\\.tsx?$": "<rootDir>/node_modules/ts-jest/preprocessor.js"
+    },
+    "testRegex": "(/__tests__/.*|\\.(test|spec))\\.(ts|tsx|js)$",
+    "collectCoverage": true,
+    "coverageDirectory": "test_coverage_dir",
+    "collectCoverageFrom": [
+      "src/**/*.tsx",
+      "src/**/*.ts"
+    ],
+    "moduleFileExtensions": [
+      "ts",
+      "tsx",
+      "js",
+      "json"
+    ]
+  },
+  "devDependencies": {
+    "@types/jest": "^21.1.2",
+    "ts-jest": "^21.1.0",
+    "tslint": "^5.7.0",
+    "typescript": "^2.5.3"
+  }
+}

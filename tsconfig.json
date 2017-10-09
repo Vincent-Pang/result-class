@@ -1,0 +1,19 @@
+{
+    "compilerOptions": {
+        "target": "ES2016",
+        "module": "CommonJS",
+        "moduleResolution": "Node",
+        "sourceMap": true,
+        "emitDecoratorMetadata": true,
+        "experimentalDecorators": true,
+        "removeComments": false,
+        "noImplicitAny": true,
+        "strictNullChecks": true,
+        "noImplicitReturns": true,
+        "noImplicitThis": true
+    },
+    "include": [
+        "src/**/*.ts",
+        "__tests__/**/*.ts"
+    ]
+}
