@@ -203,12 +203,10 @@ export class None extends AbstractOption<any>
 
     public static getInstance<U>(): Option<U>
     {
-        if (this.noneInstance)
+        if (!this.noneInstance)
         {
-            return this.noneInstance;
+            this.noneInstance = new None();
         }
-
-        this.noneInstance = new None();
 
         return this.noneInstance;
     }
