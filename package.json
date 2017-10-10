@@ -1,7 +1,7 @@
 {
   "name": "result-class",
   "repository": "https://github.com/Vincent-Pang/result-class.git",
-  "version": "1.1.3",
+  "version": "1.1.4",
   "license": "MIT",
   "scripts": {
     "build": "tsc",
