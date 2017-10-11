@@ -199,16 +199,16 @@ export class Some<T> extends AbstractOption<T>
 
 export class None extends AbstractOption<any>
 {
-    protected static noneInstance: Option<any>;
+    protected static instance: Option<any>;
 
     public static getInstance<U>(): Option<U>
     {
-        if (!this.noneInstance)
+        if (!this.instance)
         {
-            this.noneInstance = new None();
+            this.instance = new None();
         }
 
-        return this.noneInstance;
+        return this.instance;
     }
 
     protected constructor()
