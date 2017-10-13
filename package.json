@@ -1,7 +1,7 @@
 {
   "name": "result-class",
   "repository": "https://github.com/Vincent-Pang/result-class.git",
-  "version": "1.1.4",
+  "version": "1.1.5",
   "license": "MIT",
   "scripts": {
     "build": "tsc",
@@ -14,7 +14,10 @@
     "transform": {
       "^.+\\.tsx?$": "<rootDir>/node_modules/ts-jest/preprocessor.js"
     },
-    "testPathIgnorePatterns": ["<rootDir>/node_modules/", "<rootDir>/dist/"],
+    "testPathIgnorePatterns": [
+      "<rootDir>/node_modules/",
+      "<rootDir>/dist/"
+    ],
     "testRegex": "(/__tests__/.*|\\.(test|spec))\\.(ts|tsx)$",
     "collectCoverage": true,
     "mapCoverage": true,
