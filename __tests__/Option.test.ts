@@ -182,4 +182,23 @@ describe('Test Option.ts', () => {
         expect( none.or_else(vikings) ).toEqual( new Some('vikings') );
         expect( none.or_else(nobody) ).toEqual( None.getInstance() );
     });
+
+    test('match' , () =>
+    {
+        const some = new Some(2);
+        const none = None.getInstance();
+
+        const matchResultSome = some.match({
+           Some: value => value - 1,
+           None: () => -1
+        });
+
+        const matchResultNone = none.match({
+           Some: (value: number) => value - 1,
+           None: () => -1
+        });
+
+        expect(matchResultSome).toBe(1);
+        expect(matchResultNone).toBe(-1);
+    });
 });

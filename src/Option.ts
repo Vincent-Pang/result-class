@@ -1,5 +1,11 @@
 import {Err, Ok, Result} from './Result';
 
+export interface OptionMatchPattern<T, U, V>
+{
+    Some: (some: T) => U;
+    None: () => V;
+}
+
 export interface Option<T>
 {
     is_some(): boolean;
@@ -21,6 +27,8 @@ export interface Option<T>
 
     or(optb: Option<T>): Option<T>;
     or_else(f: () => Option<T>): Option<T>;
+
+    match<U, V>(pattern: OptionMatchPattern<T, U, V>): U | V;
 }
 
 export abstract class AbstractOption<T> implements Option<T>
@@ -175,6 +183,18 @@ export abstract class AbstractOption<T> implements Option<T>
         else
         {
             return f();
+        }
+    }
+
+    public match<U, V>(pattern: OptionMatchPattern<T, U, V>): U | V
+    {
+        if ( this.is_some() )
+        {
+            return pattern.Some( this.getValue() );
+        }
+        else
+        {
+            return pattern.None();
         }
     }
 }

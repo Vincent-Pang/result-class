@@ -201,4 +201,23 @@ describe('Test Result.ts', () =>
         expect( () => ok.unwrap_err() ).toThrow();
         expect( err.unwrap_err() ).toBe('some errors');
     });
+
+    test('match' , () =>
+    {
+        const ok = new Ok(2);
+        const err = new Err('some errors');
+
+        const matchResultOk = ok.match({
+           Ok: value => value - 1,
+           Err: () => -1
+        });
+
+        const matchResultErr = err.match({
+           Ok: value => value - 1,
+           Err: () => -1
+        });
+
+        expect(matchResultOk).toBe(1);
+        expect(matchResultErr).toBe(-1);
+    });
 });
