@@ -15,7 +15,7 @@ https://doc.rust-lang.org/std/option/enum.Option.html
 
 ## Usage
 
-### Option, Some, None
+### `Option<T>`, `Some<T>`, `None`
 ```
 function getUserName(userId: number): Option<string>
 {
@@ -28,7 +28,7 @@ getUserName(1).match({
 });
 ```
 
-### Result, Ok, Err
+### `Result<T, E>`, `Ok<T>`, `Err<E>`
 ```
 function division(dividend: number, divisor: number): Result<number, string>
 {
