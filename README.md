@@ -8,43 +8,45 @@ Port the Result and Option classes from Rust to Typescript.
 yarn add result-class
 ```
 
+## API
+Please refer to the rust document  
+https://doc.rust-lang.org/std/result/enum.Result.html  
+https://doc.rust-lang.org/std/option/enum.Option.html
+
 ## Usage
 
+### Option, Some, None
 ```
 function getUserName(userId: number): Option<string>
 {
     return 1 === userId ? new Some('Vincent') : None.getInstance();
 }
 
-const userName1 = getUserName(1);
-console.log( userName1.unwrap_or('Cannot found') );  // Vincent
-
-const userName100 = getUserName(100);
-console.log( userName100.unwrap_or('Cannot found') );  // Cannot found
+getUserName(1).match({
+    Some: v => console.log(`User found = ${v}`),
+    None: () => console.log('User cannot be found')
+});
 ```
 
+### Result, Ok, Err
 ```
-function getPid(processName: string): Result<number, string>
+function division(dividend: number, divisor: number): Result<number, string>
 {
-    return 'zsh' === processName ? new Ok(123) : new Err('Process not found');
+    if (divisor === 0)
+    {
+        return new Err('Division by zero');
+    }
+    else
+    {
+        return new Ok(dividend / divisor);
+    }
 }
 
-const pidZsh = getPid('zsh')
-                    .map(pid => 'Pid = ' + pid)
-                    .unwrap_or('Pid Not Found');
-
-console.log(pidZsh);    // Pid = 123
-
-const pidBash = getPid('bash')
-                    .map(pid => 'Pid = ' + pid)
-                    .unwrap_or('Pid Not Found');
-
-console.log(pidBash);   // 'Pid Not Found'
+division(dividend, divisor).match({
+    Ok: v => console.log(`Answer = ${v}`),
+    Err: e => console.log(`Error = ${e}`)
+});
 ```
-
-More usage can be found in rust document  
-https://doc.rust-lang.org/std/result/enum.Result.html  
-https://doc.rust-lang.org/std/option/enum.Option.html
 
 ## Contributing
 
