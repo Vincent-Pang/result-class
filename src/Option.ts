@@ -8,8 +8,8 @@ export interface OptionMatchPattern<T, U, V>
 
 export interface Option<T>
 {
-    is_some(): boolean;
-    is_none(): boolean;
+    is_some(): this is Some<T>;
+    is_none(): this is None;
 
     unwrap(): T;
     unwrap_or(def: T): T;
