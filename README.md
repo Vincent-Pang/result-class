@@ -26,6 +26,15 @@ getUserName(1).match({
     Some: v => console.log(`User found = ${v}`),
     None: () => console.log('User cannot be found')
 });
+
+or
+
+const name = getUserName(1).match({
+    Some: v => v,
+    None: () => 'Guest'
+});
+
+console.log(name);  // Vincent
 ```
 
 ### `Result<T, E>`, `Ok<T>`, `Err<E>`
