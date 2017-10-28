@@ -8,8 +8,8 @@ export interface ResultMatchPattern<T, U, E, V>
 
 export interface Result<T, E>
 {
-    is_ok(): boolean;
-    is_err(): boolean;
+    is_ok(): this is Ok<E>;
+    is_err(): this is Err<E>;
 
     ok(): Option<T>;
     err(): Option<E>;
