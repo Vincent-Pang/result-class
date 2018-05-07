@@ -84,6 +84,28 @@ describe('Test Option.ts', () => {
         expect( none.unwrap_or_else(fn) ).toBe(10);
     });
 
+    test('unwrap_or_null', () =>
+    {
+        const some = new Some(2);
+        const none = None.getInstance();
+
+        const fn = () => 10;
+
+        expect( some.unwrap_or_null() ).toBe(2);
+        expect( none.unwrap_or_null() ).toBeNull();
+    });
+
+    test('unwrap_or_undefined', () =>
+    {
+        const some = new Some(2);
+        const none = None.getInstance();
+
+        const fn = () => 10;
+
+        expect( some.unwrap_or_undefined() ).toBe(2);
+        expect( none.unwrap_or_undefined() ).toBeUndefined();
+    });
+
     test('map', () =>
     {
         const some = new Some('Hello, World!');

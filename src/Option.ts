@@ -14,6 +14,8 @@ export interface Option<T>
     unwrap(): T;
     unwrap_or(def: T): T;
     unwrap_or_else(f: () => T): T;
+    unwrap_or_null(): T | null;
+    unwrap_or_undefined(): T | undefined;
 
     map<U>(f: (input: T) => U): Option<U>;
     map_or<U>(def: U, f: (input: T) => U): U;
@@ -76,6 +78,14 @@ export abstract class AbstractOption<T> implements Option<T>
         {
             return f();
         }
+    }
+
+    public unwrap_or_null(): T | null {
+      return this.is_some() ? this.getValue() : null;
+    }
+
+    public unwrap_or_undefined(): T | undefined {
+      return this.is_some() ? this.getValue() : undefined;
     }
 
     public map<U>(f: (input: T) => U): Option<U>
