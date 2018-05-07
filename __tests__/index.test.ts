@@ -1,4 +1,4 @@
-import { Ok, None } from '../src/index';
+import { Ok, None } from '../src';
 
 describe('Test Option.ts', () => {
   test('test import', () => {

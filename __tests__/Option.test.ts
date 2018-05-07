@@ -1,5 +1,4 @@
-import { None, Some } from '../src/Option';
-import { Err, Ok } from '../src/Result';
+import { None, Some, Err, Ok } from '../src';
 
 describe('Test Option.ts', () => {
   test('getValue', () => {
@@ -76,8 +75,6 @@ describe('Test Option.ts', () => {
     const some = new Some(2);
     const none = None.getInstance();
 
-    const fn = () => 10;
-
     expect( some.unwrap_or_null() ).toBe(2);
     expect( none.unwrap_or_null() ).toBeNull();
   });
@@ -85,8 +82,6 @@ describe('Test Option.ts', () => {
   test('unwrap_or_undefined', () => {
     const some = new Some(2);
     const none = None.getInstance();
-
-    const fn = () => 10;
 
     expect( some.unwrap_or_undefined() ).toBe(2);
     expect( none.unwrap_or_undefined() ).toBeUndefined();
@@ -149,10 +144,10 @@ describe('Test Option.ts', () => {
 
   test('and_then', () => {
     const some = new Some(2);
-    const none = None.getInstance();
+    const none = None.getInstance<number>();
 
-    const sq = (x: number) => new Some(x * x);
-    const nope = (x: number) => None.getInstance();
+    const sq = (x: number) => new Some<number>(x * x);
+    const nope = (x: number) => None.getInstance<number>();
 
     expect( some.and_then(sq).and_then(sq) ).toEqual( new Some(16) );
     expect( some.and_then(sq).and_then(nope) ).toEqual( None.getInstance() );
@@ -184,7 +179,7 @@ describe('Test Option.ts', () => {
 
   test('match', () => {
     const some = new Some(2);
-    const none = None.getInstance();
+    const none = None.getInstance<number>();
 
     const matchResultSome = some.match({
       Some: value => value - 1,

@@ -1,5 +1,4 @@
-import { Err, Ok } from '../src/Result';
-import { None, Some } from '../src/Option';
+import { Err, Ok, None, Some } from '../src';
 
 describe('Test Result.ts', () => {
   test('getValue and getError', () => {
