@@ -17,8 +17,7 @@ https://doc.rust-lang.org/std/option/enum.Option.html
 
 ### `Option<T>`, `Some<T>`, `None`
 ```
-function getUserName(userId: number): Option<string>
-{
+function getUserName(userId: number): Option<string> {
     return 1 === userId ? new Some('Vincent') : None.getInstance();
 }
 
@@ -39,14 +38,10 @@ console.log(name);  // Vincent
 
 ### `Result<T, E>`, `Ok<T>`, `Err<E>`
 ```
-function division(dividend: number, divisor: number): Result<number, string>
-{
-    if (divisor === 0)
-    {
+function division(dividend: number, divisor: number): Result<number, string> {
+    if (divisor === 0) {
         return new Err('Division by zero');
-    }
-    else
-    {
+    } else {
         return new Ok(dividend / divisor);
     }
 }
