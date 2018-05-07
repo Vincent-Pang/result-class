@@ -38,10 +38,6 @@ export interface Result<T, E> {
 }
 
 export abstract class AbstractResult<T, E> implements Result<T, E> {
-  protected abstract getValue(): T;
-
-  protected abstract getError(): E;
-
   public abstract is_ok(): boolean;
 
   public is_err(): boolean {
@@ -83,8 +79,7 @@ export abstract class AbstractResult<T, E> implements Result<T, E> {
   public unwrap(): T {
     if ( this.is_ok() ) {
       return this.getValue();
-    }
-    else {
+    } else {
       throw new Error('called `Result::unwrap()` on an `Err` value');
     }
   }
@@ -100,8 +95,7 @@ export abstract class AbstractResult<T, E> implements Result<T, E> {
   public unwrap_err(): E {
     if ( this.is_ok() ) {
       throw new Error('called `Result::unwrap_err()` on an `Ok` value');
-    }
-    else {
+    } else {
       return this.getError();
     }
   }
@@ -109,6 +103,10 @@ export abstract class AbstractResult<T, E> implements Result<T, E> {
   public match<U, V>(pattern: ResultMatchPattern<T, U, E, V>): U | V {
     return this.is_ok() ? pattern.Ok( this.getValue() ) : pattern.Err( this.getError() );
   }
+
+  protected abstract getValue(): T;
+
+  protected abstract getError(): E;
 }
 
 export class Ok<T> extends AbstractResult<T, any> {
@@ -116,16 +114,16 @@ export class Ok<T> extends AbstractResult<T, any> {
     super();
   }
 
-  protected getValue(): T {
-    return this.value;
+  public is_ok(): boolean {
+    return true;
   }
 
   protected getError(): never {
     throw new Error('called getError on class Ok');
   }
 
-  public is_ok(): boolean {
-    return true;
+  protected getValue(): T {
+    return this.value;
   }
 }
 
@@ -134,15 +132,15 @@ export class Err<E> extends AbstractResult<any, E> {
     super();
   }
 
+  public is_ok(): boolean {
+    return false;
+  }
+
   protected getValue(): never {
     throw new Error('called getValue on class Err');
   }
 
   protected getError(): E {
     return this.error;
-  }
-
-  public is_ok(): boolean {
-    return false;
   }
 }

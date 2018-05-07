@@ -1,4 +1,4 @@
-import { None, Some, Err, Ok } from '../src';
+import { Err, None, Ok, Some } from '../src';
 
 describe('Test Option.ts', () => {
   test('getValue', () => {

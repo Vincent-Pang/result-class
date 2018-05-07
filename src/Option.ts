@@ -42,8 +42,6 @@ export interface Option<T> {
 }
 
 export abstract class AbstractOption<T> implements Option<T> {
-  protected abstract getValue(): T;
-
   public abstract is_some(): boolean;
 
   public is_none(): boolean {
@@ -53,8 +51,7 @@ export abstract class AbstractOption<T> implements Option<T> {
   public unwrap(): T {
     if (this.is_some()) {
       return this.getValue();
-    }
-    else {
+    } else {
       throw Error('called `Option::unwrap()` on a `None` value');
     }
   }
@@ -114,6 +111,8 @@ export abstract class AbstractOption<T> implements Option<T> {
   public match<U, V>(pattern: OptionMatchPattern<T, U, V>): U | V {
     return this.is_some() ? pattern.Some( this.getValue() ) : pattern.None();
   }
+
+  protected abstract getValue(): T;
 }
 
 export class Some<T> extends AbstractOption<T> {
@@ -121,18 +120,16 @@ export class Some<T> extends AbstractOption<T> {
     super();
   }
 
-  protected getValue(): T {
-    return this.value;
-  }
-
   public is_some(): boolean {
     return true;
+  }
+
+  protected getValue(): T {
+    return this.value;
   }
 }
 
 export class None extends AbstractOption<any> {
-  protected static instance: Option<any>;
-
   public static getInstance<U>(): Option<U> {
     if (!this.instance) {
       this.instance = new None();
@@ -141,15 +138,17 @@ export class None extends AbstractOption<any> {
     return this.instance;
   }
 
+  protected static instance: Option<any>;
+
   protected constructor() {
     super();
   }
 
-  protected getValue(): never {
-    throw new Error('called getValue on class None');
-  }
-
   public is_some(): boolean {
     return false;
+  }
+
+  protected getValue(): never {
+    throw new Error('called getValue on class None');
   }
 }
